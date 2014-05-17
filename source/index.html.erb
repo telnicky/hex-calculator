@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Hexidecimal and Binary Calculator</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="row">
+    <div class="large-6 large-centered columns">
+      <label>Hexidecimal</label>
+      <input type="text" class="hex-display" placeholder="DEADBEEF" />
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="large-6 large-centered columns">
+      <label>Binary</label>
+      <input type="text" class="bin-display" placeholder="1011110011001" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-6 large-centered columns">
+      <label>Decimal</label>
+      <input type="text" class="dec-display" placeholder="42" />
+    </div>
+  </div>
+</div>
+
+<div class="row calculator"> </div>
+
+<div class="row controls">
+  <div class="row">
+    <div class="large-2 columns">
+      <h3>Total</h3>
+    </div>
+    <div class="large-6 columns">
+      <input type='text' class='total rowValue'/>
+    </div>
+    <div class="large-2 columns">
+      <select class="baseSelect" data-base="16">
+        <option value='16'>Hex</option>
+        <option value='2'>Binary</option>
+        <option value='10'>Decimal</option>
+      </select>
+    </div>
+    <div class="large-2 columns">
+      <button class="addRow tiny">Add Row</button>
+    </div>
+  </div>
+</div>
