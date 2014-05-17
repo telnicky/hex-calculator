@@ -11,7 +11,7 @@ var operatorSelect =  "<select class='operatorSelect'>" +
                         "<option value='divide'>/</option>" +
                       "</select>";
 
-var calculatorRow = "<div class='row' data-base='16'>" +
+var calculatorRow = _.template("<div class='row' data-base='<%= base %>'>" +
                       "<div class='large-2 columns'>" +
                         operatorSelect +
                       "</div>" +
@@ -21,15 +21,18 @@ var calculatorRow = "<div class='row' data-base='16'>" +
                       "<div class='large-2 columns'>" +
                         "<button class='removeRow tiny alert'>Remove</button>" +
                       "</div>" +
-                    "</div>";
+                    "</div>");
 
 $(function() {
-  $('.calculator').prepend(calculatorRow);
-  $('.calculator').append(calculatorRow);
+  var calculator = $('.calculator'),
+      currentBase = $('.baseSelect').val();
+  $('.calculator').prepend(calculatorRow({ base: currentBase }));
 });
 
 $('.addRow').click(function() {
-  $('.calculator').append(calculatorRow);
+  var calculator = $('.calculator'),
+      currentBase = $('.baseSelect').val();
+  calculator.append(calculatorRow({ base: currentBase }));
 });
 
 $('.calculator').on('click', '.removeRow', function() {
@@ -39,7 +42,6 @@ $('.calculator').on('click', '.removeRow', function() {
 $('.baseSelect').on('change', function() {
   var rows = $('.calculator, .controls').find('.row'),
     base = this.value;
-  console.log(rows);
 
   _.each(rows, function(row) {
     updateBaseForRow($(row), base);
@@ -48,7 +50,7 @@ $('.baseSelect').on('change', function() {
 
 $('.calculator').on('change', '.row', function() {
   var rows = $('.calculator').find('.row'),
-    base = $('.baseSelect').data('base'),
+    base = $('.baseSelect').val(),
     total = _.reduce(rows, function(total, row) {
       var operator = $(row).find('.operatorSelect').val(),
         input = $(row).find('.rowValue'),
@@ -69,13 +71,11 @@ $('.calculator').on('change', '.row', function() {
 
 function updateBaseForRow($row, newBase) {
   var base = parseInt(newBase, 10),
-    oldBase = parseInt($('.baseSelect').data('base'), 10),
+    oldBase = $row.data('base') || 16,
     $input = $row.find('.rowValue'),
     value = parseInt($input.val(), oldBase);
+
   $input.val(value.toString(base));
-  $row.data("base", base);
+  $row.data("base", base.toString());
 }
-
-
-
 

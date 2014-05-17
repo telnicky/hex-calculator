@@ -24,7 +24,7 @@ $(".bin-display").keyup(function(evt) {
     $('.dec-display').val(val.toString(10));
   }
   else {
-    $('.bin-display').val('');
+    $('.hex-display').val('');
     $('.dec-display').val('');
   }
 });
@@ -39,8 +39,8 @@ $(".dec-display").keyup(function(evt) {
     $('.bin-display').val(val.toString(2));
   }
   else {
+    $('.hex-display').val('');
     $('.bin-display').val('');
-    $('.dec-display').val('');
   }
 });
 
